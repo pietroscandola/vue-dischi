@@ -1,7 +1,8 @@
 <template>
   <main class="bg-main">
     <div class="container">
-      <div class="cards text-center py-4">
+      <Loader v-if="isLoading"/>
+      <div v-else class="cards text-center py-4">
        <Card v-for="(album, index) in albums" :key="index"  :album="album"/>
       </div>
     </div>
@@ -11,22 +12,31 @@
 <script>
 import axios from "axios";
 import Card from './Card.vue';
+import Loader from './Loader.vue';
 export default {
   name: "Main",
   components:{
     Card,
+    Loader,
   },
   data() {
     return {
+      isLoading : false,
       albums: [],
     };
   },
-  mounted() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
+  methods:{
+    getAlbums(){
+      this.isLoading = true,
+      axios.get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((res) => {
         this.albums = res.data.response;
+        this.isLoading = false;
       });
+    }
+  },
+  mounted() {
+    this.getAlbums() 
   },
 };
 </script>
