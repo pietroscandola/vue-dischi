@@ -2,7 +2,7 @@
   <main class="bg-main">
     <div class="container">
       <div class="cards text-center">
-        <div v-for="(album, index) in albums" :key="index" class="card py-5">
+        <div v-for="(album, index) in albums" :key="index" class="card py-3">
           <figure class="d-flex justify-content-center">
             <img :src="album.poster" :alt="album.title" class="img-fluid" />
           </figure>
@@ -37,6 +37,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/style.scss";
+
 .bg-main {
   background-color: #1e2d3b;
 }
@@ -47,7 +49,7 @@ export default {
   .card {
     width: calc(100% / 5 - 40px);
     margin: 20px;
-    background-color: #2e3a46;   
+    background-color: $color_gray;   
     img {
       width: 80%;
       height: auto;

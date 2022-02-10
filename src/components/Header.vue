@@ -12,11 +12,11 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import "../assets/scss/style.scss";
 
 .bg-navbar{
-    background-color: #2e3a46; ;
+    background-color: $color_gray; 
 }
 
 img{
