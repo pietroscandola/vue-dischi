@@ -1,17 +1,8 @@
 <template>
   <main class="bg-main">
     <div class="container">
-      <div class="cards text-center">
-        <div v-for="(album, index) in albums" :key="index" class="card py-3">
-          <figure class="d-flex justify-content-center">
-            <img :src="album.poster" :alt="album.title" class="img-fluid" />
-          </figure>
-          <h5 class="text-white">{{ album.title.toUpperCase() }}</h5>
-          <div class="my-3">
-            <p class="text-secondary">{{ album.author }}</p>
-            <p class="text-secondary">{{ album.year }}</p>
-          </div>
-        </div>
+      <div class="cards text-center py-4">
+       <Card v-for="(album, index) in albums" :key="index"  :album="album"/>
       </div>
     </div>
   </main>
@@ -19,8 +10,12 @@
 
 <script>
 import axios from "axios";
+import Card from './Card.vue';
 export default {
   name: "Main",
+  components:{
+    Card,
+  },
   data() {
     return {
       albums: [],
