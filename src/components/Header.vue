@@ -9,9 +9,10 @@
 
       <form class="mx-5">
         <label for="genere" class="text-white px-3">Scegli il genere: </label>
-        <select name="genere">
-          <option v-for="(album, index) in albums" :key="index" :value="album.genre" />
-            {{ album.genre }}
+        <select name="genere" v-model="genere" @change ="$emit('changed', genere)">
+          <option value="All">All</option>
+          <option v-for="(genere, index) in filterGenre" :key="index" :value="genere">
+            {{ genere}}
           </option>
         </select>
       </form>
@@ -23,13 +24,23 @@
 export default {
   name: "Header",
   props: ["albums"],
-  methods: {
-    isGenre() {
-      if (!this.albums.includes(this.albums.genre)) {
-        this.albums.push(this.albums.genre);
-      }
-    },
+  computed:{
+    filterGenre(){
+      const listGenres = [];
+      this.albums.forEach(album => {
+        if(!listGenres.includes(album.genre)) listGenres.push(album.genre);
+      });
+      return listGenres;   
+    }
   },
+  data(){
+    return{
+      genere: 'All',      
+    }
+  },
+  methods:{
+    
+  } 
 };
 </script>
 

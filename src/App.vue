@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :albums="albums"/>
-    <Main :albums="albums"/>
+    <Header :albums="albums" @changed="getAlbumsRemaning"/>
+    <Main :albums="albums" :newGenres="newGenres"/>
   </div>
 </template>
 
@@ -19,9 +19,11 @@ export default {
   data(){
     return{
       albums:[],
+      newGenres: '',
     }
   },
-   methods:{
+
+  methods:{
     getAlbums(){
       this.isLoading = true,
       axios.get("https://flynn.boolean.careers/exercises/api/array/music")
@@ -29,12 +31,17 @@ export default {
         this.albums = res.data.response;
         this.isLoading = false;
       });
-    }
+    },
+
+    getAlbumsRemaning(genere){
+      return this.newGenres=genere      
+    },
   },
-   mounted() {
+
+  mounted() {
     this.getAlbums() 
   },
-}
+};
 </script>
 
 <style lang="scss">

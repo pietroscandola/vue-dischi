@@ -19,12 +19,13 @@ export default {
     Card,
     Loader,
   },
-  props:["albums"],
+  props:["albums","newGenres"],
   data() {
     return {
       isLoading : false,     
     };    
   },
+  
   
 };
 </script>
