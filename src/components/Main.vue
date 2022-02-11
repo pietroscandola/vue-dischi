@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from "axios";
+
 import Card from './Card.vue';
 import Loader from './Loader.vue';
 export default {
@@ -19,25 +19,13 @@ export default {
     Card,
     Loader,
   },
+  props:["albums"],
   data() {
     return {
-      isLoading : false,
-      albums: [],
-    };
+      isLoading : false,     
+    };    
   },
-  methods:{
-    getAlbums(){
-      this.isLoading = true,
-      axios.get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => {
-        this.albums = res.data.response;
-        this.isLoading = false;
-      });
-    }
-  },
-  mounted() {
-    this.getAlbums() 
-  },
+  
 };
 </script>
 
